@@ -19,50 +19,16 @@
 
 ; Exercise 3
 
-;Vowel
+(define (pigl wd)
+  (if (pl-done? wd)
+      (word wd 'ay)
+      (pigl (word (bf wd) (first wd)))))
+
+(define (pl-done? wd)
+  (vowel? (first wd)))
+
 (define (vowel? letter)
   (member? letter '(a e i o u)))
-
-; Pig Complete
-(define (pig-complete? wd) (vowel? (first wd)))
-
-; WordVowel?
-
-(define (word-vowel? wd)
-  (cond
-    ((empty? wd) #f)
-    ((vowel? (first wd)) #t)
-    (else (word-vowel? (bf wd)))
-  )
-)
-
-; Pig Consonant
-(define (pigConst wd)
-  (cond
-    ((empty? wd) '())
-    ((vowel? (first wd)) wd)
-    (else (word (pigConst (bf wd)) (first wd)))
-  )
-)
-
-; Cipher word
-(define (cipher wd)
-  (cond
-    ((not (vowel? (first wd))) (word (pigConst wd) 'ay))
-    ((vowel? (first wd)) (word wd 'ay))
-   )
-)
-
-; Pig Latin
-(define (pigl wd)
-  (if (word-vowel? wd)
-      (cipher wd)
-      wd)
-)
-
-(pigl 'hello) ; ellohay 
-(pigl 'open) ; openay 
-(pigl 'scheme) ; emeschay
 
 ; Explain what would happen if you used new-if instead of if below.
 #|
@@ -105,5 +71,3 @@ Your explanation here
 Your explanation here
 
 |#
-
-
