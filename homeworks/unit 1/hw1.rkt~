@@ -1,0 +1,109 @@
+#lang racket
+
+(require berkeley)
+(provide (all-defined-out))
+
+; Exercise 1 - Define dupls-removed
+
+(define (dupls-removed sent)
+  ; Your code here
+  (error "Not yet implemented")
+)
+
+; Exercise 2 - Define count-word
+
+(define (count-word sent wd)
+  ; Your code here
+  (error "Not yet implemented")
+)
+
+; Exercise 3
+
+;Vowel
+(define (vowel? letter)
+  (member? letter '(a e i o u)))
+
+; Pig Complete
+(define (pig-complete? wd) (vowel? (first wd)))
+
+; WordVowel?
+
+(define (word-vowel? wd)
+  (cond
+    ((empty? wd) #f)
+    ((vowel? (first wd)) #t)
+    (else (word-vowel? (bf wd)))
+  )
+)
+
+; Pig Consonant
+(define (pigConst wd)
+  (cond
+    ((empty? wd) '())
+    ((vowel? (first wd)) wd)
+    (else (word (pigConst (bf wd)) (first wd)))
+  )
+)
+
+; Cipher word
+(define (cipher wd)
+  (cond
+    ((not (vowel? (first wd))) (word (pigConst wd) 'ay))
+    ((vowel? (first wd)) (word wd 'ay))
+   )
+)
+
+; Pig Latin
+(define (pigl wd)
+  (if (word-vowel? wd)
+      (cipher wd)
+      wd)
+)
+
+(pigl 'hello) ; ellohay 
+(pigl 'open) ; openay 
+(pigl 'scheme) ; emeschay
+
+; Explain what would happen if you used new-if instead of if below.
+#|
+Your explanation here
+
+|#
+
+; Exercise 4 - Define squares
+
+(define (squares sent)
+  ; Your code here
+  (error "Not yet implemented")
+)
+
+; Exercise 5 - Define switch
+
+(define (switch sent)
+  ; Your code here
+  (error "Not yet implemented")
+)
+
+; Exercise 6 - Define ordered?
+
+(define (ordered? sent)
+  ; Your code here
+  (error "Not yet implemented")
+)
+
+; Exercise 7 - Define ends-e
+
+(define (ends-e sent)
+  ; Your code here
+  (error "Not yet implemented")
+)
+
+; Exercise 8
+
+#|
+
+Your explanation here
+
+|#
+
+
